@@ -1,0 +1,14 @@
+version: "3"
+services:
+  lighthouse:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: "${UID}:${GID}"
+    volumes:
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+      - ${PWD}/reports:/home/chrome/reports
+    working_dir: /home/chrome/reports
+    tty: true
+    command: /bin/bash
